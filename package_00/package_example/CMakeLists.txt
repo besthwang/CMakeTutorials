@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(MyLib)
 
 
-set (MYLIB_VERSION_NUM "1.0.0")
+set (MYLIB_VERSION_NUMBER "1.0.0")
 set (MYLIB_WORLD_VERSION 1)
 set (MYLIB_MAJOR_VERSION 0)
 set (MYLIB_MINOR_VERSION 0)
@@ -48,6 +48,7 @@ set_target_properties(MyLib PROPERTIES EXPORT_NAME MyLib)
 
 install (TARGETS MyLib EXPORT MyLibTargets)
 
+#MyLibConfig.cmake is created in build folder.
 configure_package_config_file (
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake/MyLibConfig.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/MyLibConfig.cmake
@@ -60,6 +61,7 @@ install ( FILES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/UseMyLib.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/MyLibConfig.cmake
 DESTINATION ${CMAKEPACKAGE_INSTALL_DIR} )    
 
+#MyLibTargets.cmake is created in build folder.
 export (TARGETS MyLib NAMESPACE MyLib:: FILE MyLibTargets.cmake)
 export (PACKAGE MyLib)
 install (EXPORT MyLibTargets NAMESPACE MyLib:: DESTINATION ${CMAKEPACKAGE_INSTALL_DIR})
